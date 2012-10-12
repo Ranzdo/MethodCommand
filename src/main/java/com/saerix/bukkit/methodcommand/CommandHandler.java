@@ -107,7 +107,7 @@ public class CommandHandler implements CommandExecutor {
 			
 			RegisteredCommand parent = command.getParent();
 			while(parent != null) {
-				usage.insert(0, parent.getParent()+" ");
+				usage.insert(0, parent.getLabel()+" ");
 				parent = parent.getParent();
 			}
 			
