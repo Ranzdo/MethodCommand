@@ -195,6 +195,7 @@ public class RegisteredCommand {
 	void set(Object methodInstance, Method method) {
 		this.methodInstance = methodInstance;
 		this.method = method;
+		method.setAccessible(true);
 		Command command = method.getAnnotation(Command.class);
 		Flags flagsAnnotation = method.getAnnotation(Flags.class);
 		this.description = command.description();

@@ -18,13 +18,13 @@ public class FlagArgument extends CommandArgument {
 
 	@Override
 	public Object execute(CommandSender sender, Arguments args) throws CommandError {
-		if(!args.hasNext(flag))
-			throw new CommandError("The argument ["+getName()+"] to the flag -"+flag.getIdentifier()+" is not defined");
-		
-		String arg = CommandUtil.escapeArgumentVariable(args.nextFlagArgument(flag));
-		
-		if(arg == null)
+		String arg;
+		if(!args.flagExists(flag))
 			arg = getDefault();
+		else if(!args.hasNext(flag))
+			throw new CommandError("The argument s ["+getName()+"] to the flag -"+flag.getIdentifier()+" is not defined");
+		else
+			arg = CommandUtil.escapeArgumentVariable(args.nextFlagArgument(flag));
 		
 		return getHandler().handle(sender, this, arg);
 	}

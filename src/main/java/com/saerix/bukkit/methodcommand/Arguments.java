@@ -50,11 +50,15 @@ public class Arguments {
 	}
 	
 	public boolean hasNext() {
-		return argCounter >= size();
+		return argCounter < size();
 	}
 	
 	public boolean hasNext(Flag flag) {
-		return flagCounter.get(flag) >= size(flag);
+		Integer c = flagCounter.get(flag);
+		if(c == null)
+			return false;
+		
+		return c < size(flag);
 	}
 	
 	public String nextArgument() {
