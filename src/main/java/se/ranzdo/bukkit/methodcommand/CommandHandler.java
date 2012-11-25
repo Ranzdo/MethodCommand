@@ -148,6 +148,7 @@ public class CommandHandler implements CommandExecutor {
 		
 		registerArgumentHandler(String.class, new StringArgumentHandler());
 		registerArgumentHandler(int.class, new IntegerArgumentHandler());
+		registerArgumentHandler(double.class, new DoubleArgumentHandler());
 		registerArgumentHandler(Player.class, new PlayerArgumentHandler());
 		registerArgumentHandler(World.class, new WorldArgumentHandler());
 		registerArgumentHandler(EntityType.class, new EntityTypeArgumentHandler());
