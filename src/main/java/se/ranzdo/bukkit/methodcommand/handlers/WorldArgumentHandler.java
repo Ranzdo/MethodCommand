@@ -31,7 +31,7 @@ public class WorldArgumentHandler extends ArgumentHandler<World> {
 	public World transform(CommandSender sender, CommandArgument argument, String value) throws TransformError {
 		World world = Bukkit.getWorld(value);
 		if(world == null)
-			throw new TransformError(argument.getMessage("world_not_found"));
+			throw new TransformError(argument.getMessage("world_not_found", value));
 		return world;
 	}
 }

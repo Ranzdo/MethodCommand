@@ -34,7 +34,7 @@ public class CommandArgument implements ExecutableArgument {
 		String arg;
 		if(!args.hasNext()) {
 			if(def.equals(" "))
-				throw new CommandError("The argument ["+name+"] is not defined (it has no default value)");
+				throw new CommandError("The argument ["+name+"] is not defined (it has no default value)", true);
 			
 			arg = def;
 		}
@@ -94,9 +94,5 @@ public class CommandArgument implements ExecutableArgument {
 	
 	public Map<String, String[]> getVerifyArguments() {
 		return verifyArguments;
-	}
-	
-	public CommandError throwableMessage(String node) {
-		return new CommandError(getMessage(node));
 	}
 }
