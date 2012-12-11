@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 public @interface Flags {
 	String[] description() default {};
 	/**
-	 * @return
+	 * @return description of flag
 	 */
 	String[] identifier();
 }
