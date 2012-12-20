@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Flags {
-	String[] description() default {};
 	/**
-	 * @return description of flag
+	 * @return description of the flags (in the same order as the identifiers)
 	 */
+	String[] description() default {};
 	String[] identifier();
 }

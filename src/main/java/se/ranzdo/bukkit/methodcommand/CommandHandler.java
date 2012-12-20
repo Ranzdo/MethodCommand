@@ -231,7 +231,7 @@ public class CommandHandler implements CommandExecutor {
 		return helpSuffix;
 	}
 	
-	public void setHelpSuffux(String suffix) {
+	public void setHelpSuffix(String suffix) {
 		this.helpSuffix = suffix;
 	}
 
