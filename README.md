@@ -6,3 +6,22 @@ This is a library to make commands in bukkit more structured. Visit the wiki for
 You can download the latest version at: http://ci.ranzdo.se/job/MethodCommand/lastBuild/
 
 JavaDocs can be found at: http://ci.ranzdo.se/job/MethodCommand/Javadocs/
+
+##Maven Integration
+
+```
+<repositories>
+     <repository>
+          <id>ranzdo-repo</id>
+          <url>http://ci.ranzdo.se/plugin/repository/everything/</url>
+    </repository>
+</repositories>
+```
+```
+<dependency>
+     <groupId>se.ranzdo.bukkit</groupId>
+     <artifactId>methodcommand</artifactId>
+     <version>0.1</version>
+     <scope>compile</scope>
+</dependency>
+```
