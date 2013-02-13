@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>se.ranzdo.bukkit</groupId>
 	<artifactId>methodcommand</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>MethodCommand</name>
   
 	<repositories>
