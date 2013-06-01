@@ -33,18 +33,12 @@ public class WildcardArgument extends CommandArgument {
 		
 		if(join) {
 			StringBuilder sb = new StringBuilder();
-			boolean hasRun = false;
 			
 			while(args.hasNext()) {
-				if(hasRun) {
-					sb.append(" "+args.nextArgument());
-				} else {
-					sb.append(args.nextArgument());
-					hasRun = true;
-				}
+				sb.append(args.nextArgument()).append(" ");
 			}
 			
-			return getHandler().handle(sender, this, CommandUtil.escapeArgumentVariable(sb.toString()));
+			return getHandler().handle(sender, this, CommandUtil.escapeArgumentVariable(sb.toString().trim());
 		}
 		else {
 			Object array = Array.newInstance(getArgumentClass(), args.over());
