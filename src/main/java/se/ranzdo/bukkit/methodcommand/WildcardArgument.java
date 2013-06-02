@@ -38,7 +38,7 @@ public class WildcardArgument extends CommandArgument {
 				sb.append(args.nextArgument()).append(" ");
 			}
 			
-			return getHandler().handle(sender, this, CommandUtil.escapeArgumentVariable(sb.toString().trim());
+			return getHandler().handle(sender, this, CommandUtil.escapeArgumentVariable(sb.toString().trim()));
 		}
 		else {
 			Object array = Array.newInstance(getArgumentClass(), args.over());
