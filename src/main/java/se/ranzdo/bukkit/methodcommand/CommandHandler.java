@@ -28,6 +28,9 @@ public class CommandHandler implements CommandExecutor {
 	private PermissionHandler permissionHandler = new PermissionHandler() {
 		@Override
 		public boolean hasPermission(CommandSender sender, String[] permissions) {
+			if (sender instanceof ConsoleCommandSender) {
+				return true;
+			}
 			for(String perm : permissions) {
 				if(!sender.hasPermission(perm))
 					return false;
