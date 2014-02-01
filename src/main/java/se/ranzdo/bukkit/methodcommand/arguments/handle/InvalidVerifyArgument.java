@@ -1,4 +1,4 @@
-package se.ranzdo.bukkit.methodcommand;
+package se.ranzdo.bukkit.methodcommand.arguments.handle;
 
 public class InvalidVerifyArgument extends RuntimeException {
 	private static final long serialVersionUID = 1L;

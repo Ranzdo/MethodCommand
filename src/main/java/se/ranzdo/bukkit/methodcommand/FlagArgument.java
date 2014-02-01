@@ -1,6 +1,9 @@
 package se.ranzdo.bukkit.methodcommand;
 
 import org.bukkit.command.CommandSender;
+import se.ranzdo.bukkit.methodcommand.annotations.Arg;
+import se.ranzdo.bukkit.methodcommand.arguments.handle.ArgumentHandler;
+import se.ranzdo.bukkit.methodcommand.arguments.Arguments;
 
 
 public class FlagArgument extends CommandArgument {
@@ -24,9 +27,9 @@ public class FlagArgument extends CommandArgument {
 		else if(!args.hasNext(flag))
 			throw new CommandError("The argument s ["+getName()+"] to the flag -"+flag.getIdentifier()+" is not defined");
 		else
-			arg = CommandUtil.escapeArgumentVariable(args.nextFlagArgument(flag));
-		
-		return getHandler().handle(sender, this, arg);
+            arg = ArgumentHandler.escapeArgumentVariable(args.nextFlagArgument(flag));
+
+        return getHandler().handle(sender, this, arg);
 	}
 	
 	public Flag getFlag() {

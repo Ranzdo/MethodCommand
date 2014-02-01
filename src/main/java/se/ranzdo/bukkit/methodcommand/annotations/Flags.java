@@ -1,4 +1,4 @@
-package se.ranzdo.bukkit.methodcommand;
+package se.ranzdo.bukkit.methodcommand.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,9 +8,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Flags {
-	/**
-	 * @return description of the flags (in the same order as the identifiers)
-	 */
-	String[] description() default {};
-	String[] identifier();
+    /**
+     * @return description of the flags (in the same order as the identifiers)
+     */
+    String[] description() default {};
+
+    String[] identifier();
 }

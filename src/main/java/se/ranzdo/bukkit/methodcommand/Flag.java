@@ -1,43 +1,44 @@
 package se.ranzdo.bukkit.methodcommand;
 
+import org.bukkit.command.CommandSender;
+import se.ranzdo.bukkit.methodcommand.arguments.Arguments;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.command.CommandSender;
-
 public class Flag implements ExecutableArgument {
-	private final String identifier;
-	private final String description;
-	private List<FlagArgument> arguments = new ArrayList<FlagArgument>();
-	
-	public Flag(String identifier, String description) {
-		this.identifier = identifier;
-		this.description = description;
-	}
-	
-	public void addArgument(FlagArgument argument) {
-		arguments.add(argument);
-	}
+    private final String identifier;
+    private final String description;
+    private List<FlagArgument> arguments = new ArrayList<FlagArgument>();
 
-	@Override
-	public Object execute(CommandSender sender, Arguments args) {
-		return args.flagExists(this);
-	}
+    public Flag(String identifier, String description) {
+        this.identifier = identifier;
+        this.description = description;
+    }
 
-	public List<FlagArgument> getArguments() {
-		return arguments;
-	}
+    public void addArgument(FlagArgument argument) {
+        arguments.add(argument);
+    }
 
-	public String getDescription() {
-		return description;
-	}
-	
-	public String getIdentifier() {
-		return identifier;
-	}
+    @Override
+    public Object execute(CommandSender sender, Arguments args) {
+        return args.flagExists(this);
+    }
 
-	@Override
-	public int hashCode() {
-		return identifier.hashCode();
-	}
+    public List<FlagArgument> getArguments() {
+        return arguments;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    @Override
+    public int hashCode() {
+        return identifier.hashCode();
+    }
 }

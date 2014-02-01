@@ -1,10 +1,9 @@
-package se.ranzdo.bukkit.methodcommand;
+package se.ranzdo.bukkit.methodcommand.arguments;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import se.ranzdo.bukkit.methodcommand.CommandError;
+import se.ranzdo.bukkit.methodcommand.Flag;
+
+import java.util.*;
 import java.util.Map.Entry;
 
 public class Arguments {
@@ -75,13 +74,13 @@ public class Arguments {
 		
 		return args.get(flagCounter.put(flag, flagCounter.get(flag)+1));
 	}
-	
-	public int over() {
-		return size()-argCounter;
+
+    public int count() {
+        return size()-argCounter;
 	}
-	
-	public int over(Flag flag) {
-		return size(flag)-flagCounter.get(flag);
+
+    public int count(Flag flag) {
+        return size(flag)-flagCounter.get(flag);
 	}
 	
 	public int size() {

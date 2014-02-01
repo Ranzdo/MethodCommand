@@ -1,11 +1,10 @@
-package se.ranzdo.bukkit.methodcommand.handlers;
+package se.ranzdo.bukkit.methodcommand.arguments.handle.defaults;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
-
-import se.ranzdo.bukkit.methodcommand.ArgumentHandler;
+import se.ranzdo.bukkit.methodcommand.arguments.handle.ArgumentHandler;
+import se.ranzdo.bukkit.methodcommand.arguments.handle.TransformError;
 import se.ranzdo.bukkit.methodcommand.CommandArgument;
-import se.ranzdo.bukkit.methodcommand.TransformError;
 
 
 public class EntityTypeArgumentHandler extends ArgumentHandler<EntityType> {

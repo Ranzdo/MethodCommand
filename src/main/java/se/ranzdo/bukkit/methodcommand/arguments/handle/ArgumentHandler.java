@@ -1,10 +1,13 @@
-package se.ranzdo.bukkit.methodcommand;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+package se.ranzdo.bukkit.methodcommand.arguments.handle;
 
 import org.bukkit.command.CommandSender;
+import se.ranzdo.bukkit.methodcommand.CommandError;
+import se.ranzdo.bukkit.methodcommand.CommandArgument;
+
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public abstract class ArgumentHandler<T> {
 	private final class Variable {
@@ -16,14 +19,13 @@ public abstract class ArgumentHandler<T> {
 		}
 	}
 	
-	CommandHandler handler;
-	
 	private Map<String, ArgumentVerifier<T>> verifiers = new HashMap<String, ArgumentVerifier<T>>();
 	private Map<String, Variable> vars = new HashMap<String, Variable>();
 	private Map<String, String> messageNodes = new HashMap<String, String>();
 	
 	public ArgumentHandler() {
-		//Default messages
+
+        //Default messages
 		setMessage("include_error", "[%p] has an invalid value.");
 		setMessage("exclude_error", "[%p] has an invalid value.");
 		setMessage("cant_as_console", "You can't do this as console.");
@@ -72,10 +74,6 @@ public abstract class ArgumentHandler<T> {
 		verifiers.put(name, verify);
 	}
 	
-	public final CommandHandler getCommandHandler() {
-		return handler;
-	}
-	
 	public final String getMessage(String node) {	
 		return messageNodes.get(node);
 	}
@@ -91,9 +89,9 @@ public abstract class ArgumentHandler<T> {
 	public final ArgumentVerifier<T> getVerifier(String argName) {
 		return verifiers.get(argName);
 	}
-	
-	final T handle(CommandSender sender, CommandArgument argument, String arg) throws CommandError {
-		if(arg == null)
+
+    public final T handle(CommandSender sender, CommandArgument argument, String arg) throws CommandError {
+        if(arg == null)
 			return null;
 		
 		T transformed;
@@ -116,9 +114,9 @@ public abstract class ArgumentHandler<T> {
 		for(Entry<String, String[]> verifier : argument.getVerifyArguments().entrySet()) {
 			ArgumentVerifier<T> v = this.verifiers.get(verifier.getKey());
 			if(v == null)
-				throw new VerifierNotRegistered(verifier.getKey());
-			
-			v.verify(sender, argument, verifier.getKey(), verifier.getValue(), transformed, arg);
+                throw new InvalidVerifyArgument(verifier.getKey());
+
+            v.verify(sender, argument, verifier.getKey(), verifier.getValue(), transformed, arg);
 		}
 		
 		return transformed;
@@ -157,4 +155,45 @@ public abstract class ArgumentHandler<T> {
 	public final boolean verifierExists(String argName) {
 		return verifiers.get(argName) != null;
 	}
+
+    private static Pattern verifyArgumentsPattern = Pattern.compile("^(.*?)\\[(.*?)\\]$");
+
+    public static String escapeArgumentVariable(String var) {
+        if (var == null)
+            return null;
+
+        if (var.matches("^\\\\*\\?.*$"))
+            return "\\" + var;
+
+        return var;
+    }
+
+    public static Map<String, String[]> parseVerifiers(String verifiers) {
+        Map<String, String[]> map = new LinkedHashMap<String, String[]>();
+
+        if (verifiers.equals(""))
+            return map;
+
+        String[] arguments = verifiers.split("\\|");
+
+        for (String arg : arguments) {
+            Matcher matcher = verifyArgumentsPattern.matcher(arg);
+            if (!matcher.matches())
+                throw new IllegalArgumentException("The argument \"" + arg + "\" is in invalid form.");
+
+            List<String> parameters = new ArrayList<String>();
+
+            String sparameters = matcher.group(2);
+            if (sparameters != null) {
+                for (String parameter : sparameters.split(","))
+                    parameters.add(parameter.trim());
+            }
+
+            String argName = matcher.group(1).trim();
+
+            map.put(argName, parameters.toArray(new String[0]));
+        }
+
+        return map;
+    }
 }

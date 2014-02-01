@@ -1,9 +1,12 @@
 package se.ranzdo.bukkit.methodcommand;
 
+import org.bukkit.command.CommandSender;
+import se.ranzdo.bukkit.methodcommand.annotations.Arg;
+import se.ranzdo.bukkit.methodcommand.arguments.handle.ArgumentHandler;
+import se.ranzdo.bukkit.methodcommand.arguments.Arguments;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.bukkit.command.CommandSender;
 
 
 public class CommandArgument implements ExecutableArgument {
@@ -24,8 +27,8 @@ public class CommandArgument implements ExecutableArgument {
 		this.name = name;
 		this.description = description;
 		this.def = def;
-		this.verifyArguments = CommandUtil.parseVerifiers(verifiers);
-		this.handler = handler;
+        this.verifyArguments = ArgumentHandler.parseVerifiers(verifiers);
+        this.handler = handler;
 		this.argumentClass = argumentClass;
 	}
 
@@ -39,9 +42,9 @@ public class CommandArgument implements ExecutableArgument {
 			arg = def;
 		}
 		else
-			arg = CommandUtil.escapeArgumentVariable(args.nextArgument());
-		
-		return handler.handle(sender, this, arg);
+            arg = ArgumentHandler.escapeArgumentVariable(args.nextArgument());
+
+        return handler.handle(sender, this, arg);
 	}
 	
 	private String formatMessage(String msg, String[] vars) {
