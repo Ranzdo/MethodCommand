@@ -3,9 +3,9 @@ MethodCommand
 
 This is a library to make commands in bukkit more structured. Visit the wiki for more information.
 
-You can download the latest version at: http://ci.ranzdo.se/job/MethodCommand/lastBuild/
+You can download the latest version at: https://ci.int32.se/job/MethodCommand/lastBuild/
 
-JavaDocs can be found at: http://ci.ranzdo.se/job/MethodCommand/Javadocs/
+JavaDocs can be found at: https://ci.int32.se/job/MethodCommand/Javadocs/
 
 ##Maven Integration
 
@@ -13,7 +13,7 @@ JavaDocs can be found at: http://ci.ranzdo.se/job/MethodCommand/Javadocs/
 <repositories>
      <repository>
           <id>ranzdo-repo</id>
-          <url>http://ci.ranzdo.se/plugin/repository/everything/</url>
+          <url>https://ci.int32.se/plugin/repository/everything/</url>
     </repository>
 </repositories>
 ```
