@@ -12,7 +12,7 @@ JavaDocs can be found at: https://ci.int32.se/job/MethodCommand/Javadocs/
 ```
 <repositories>
      <repository>
-          <id>ranzdo-repo</id>
+          <id>int32-repo</id>
           <url>https://ci.int32.se/plugin/repository/everything/</url>
     </repository>
 </repositories>
