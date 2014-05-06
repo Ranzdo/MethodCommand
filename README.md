@@ -5,7 +5,7 @@ This is a library to make commands in bukkit more structured. Visit the wiki for
 
 You can download the latest version at: https://ci.int32.se/job/MethodCommand/lastBuild/
 
-JavaDocs can be found at: https://ci.int32.se/job/MethodCommand/Javadocs/
+JavaDocs can be found at: https://ci.int32.se/job/MethodCommand/JavaDocs/
 
 ##Maven Integration
 
