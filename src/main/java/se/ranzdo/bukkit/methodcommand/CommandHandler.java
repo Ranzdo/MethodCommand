@@ -188,6 +188,10 @@ public class CommandHandler implements CommandExecutor {
 			
 			PluginCommand rootPcommand = plugin.getCommand(identifiers[0]);
 			
+			if(rootPcommand == null) {
+				rootPcommand = CommandUtil.createCommand(this.plugin, identifiers[0]);
+			}
+			
 			if(rootPcommand == null) 
 				throw new RegisterCommandMethodException(method, "The rootcommand (the first identifier) is not registerd in the plugin.yml");
 			

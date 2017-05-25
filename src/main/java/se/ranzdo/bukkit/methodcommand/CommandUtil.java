@@ -1,11 +1,17 @@
 package se.ranzdo.bukkit.methodcommand;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandMap;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.plugin.Plugin;
 
 public class CommandUtil {	
 	private static Pattern verifyArgumentsPattern = Pattern.compile("^(.*?)\\[(.*?)\\]$");
@@ -46,5 +52,36 @@ public class CommandUtil {
 		}
 		
 		return map;
+	}
+	
+	private static CommandMap commandMap;
+	
+	public static CommandMap getCommandMap() {
+		if(commandMap == null) {
+			commandMap = ReflectionUtil.getField(Bukkit.getServer().getPluginManager(), "commandMap");
+		}
+		
+		return commandMap;
+	}
+	
+	private static Constructor<PluginCommand> commandCon;
+	
+	public static PluginCommand createCommand(Plugin plugin, String name) {
+		CommandMap map = getCommandMap();
+		
+		try {
+			if(commandCon == null) {
+				commandCon = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
+				commandCon.setAccessible(true);
+			}
+			
+			PluginCommand command = commandCon.newInstance(name, plugin);
+			map.register(plugin.getName(), command);
+			
+			return command;
+		}
+		catch(Throwable ignore) {}
+		
+		return null;
 	}
 }
