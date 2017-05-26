@@ -1,6 +1,7 @@
 package se.ranzdo.bukkit.methodcommand;
 
 public interface HelpHandler {
-	public String[] getHelpMessage(RegisteredCommand command);
-	public String getUsage(RegisteredCommand command);
+    String[] getHelpMessage(RegisteredCommand command);
+
+    String getUsage(RegisteredCommand command);
 }
