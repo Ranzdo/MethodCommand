@@ -79,7 +79,7 @@ public class CommandHandler implements CommandExecutor {
                     for (Flag flag : flags) {
                         StringBuilder args = new StringBuilder();
                         for (FlagArgument argument : flag.getArguments()) {
-                            args.append(" [" + argument.getName() + "]");
+                            args.append(" [").append(argument.getName()).append("]");
                         }
 
                         message.add("-" + flag.getIdentifier() + ChatColor.AQUA + args.toString());
@@ -217,14 +217,10 @@ public class CommandHandler implements CommandExecutor {
                 rootPcommand.setExecutor(this);
             }
 
-            RootCommand rootCommand = rootCommands.get(rootPcommand);
-
-            if (rootCommand == null) {
-                rootCommand = new RootCommand(rootPcommand, this);
-                rootCommands.put(rootPcommand, rootCommand);
-            }
-
-            RegisteredCommand mainCommand = rootCommand;
+            RegisteredCommand mainCommand = rootCommands.computeIfAbsent(
+                    rootPcommand,
+                    k -> new RootCommand(rootPcommand, this)
+            );
 
             for (int i = 1; i < identifiers.length; i++) {
                 String suffix = identifiers[i];
